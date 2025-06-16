@@ -7,7 +7,7 @@ public class Node<K, V> {
     V value;
     Node<K, V> next;
 
-    Node (K key, V value, Node<K, V> next) {
+    Node(K key, V value, Node<K, V> next) {
         this.key = key;
         this.value = value;
         this.next = next;
@@ -16,8 +16,12 @@ public class Node<K, V> {
     @Override
     @SuppressWarnings("unchecked")
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
 
         Node<K,V> node = (Node<K, V>) obj;
         return Objects.equals(key, node.key) && Objects.equals(value, node.value);

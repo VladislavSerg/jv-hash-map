@@ -28,7 +28,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         table[index] = newNode;
         size++;
 
-        if (size > capacity * loadFactor) {
+        if (size > threshold) {
             resize();
         }
     }
@@ -63,7 +63,8 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
             while (current != null) {
                 Node<K, V> next = current.next;
 
-                int newIndex = current.key.hashCode() % newCapacity;
+                int hash = current.key == null ? 0 : current.key.hashCode();
+                int newIndex = hash & (newCapacity - 1);
                 current.next = newTable[newIndex];
                 newTable[newIndex] = current;
 
